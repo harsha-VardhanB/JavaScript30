@@ -8,7 +8,6 @@ function ready() {
     if(selectElement != null)
     {
       selectElement.classList.remove('playing');
-      selectAudioElement.pause();
     }
   });
   document.addEventListener('keydown', function (e) {
@@ -19,6 +18,7 @@ function ready() {
     if(selectElement != null)
     {
       selectElement.classList.add('playing');
+      selectAudioElement.currentTime = 0;
       selectAudioElement.play();
     }
   });
