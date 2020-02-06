@@ -22,9 +22,19 @@
 
   <style>
 
-    /*
-      misc styles, nothing to do with CSS variables
-    */
+    :root{
+      --base:#000000;
+      --blur:10px;
+      --spacing:10px;
+    }
+    .hl{
+      color:var(--base);
+    }
+    img{
+      padding: var(--spacing);
+      background-color: var(--base);
+      filter: blur(var(--blur));
+    }
 
     body {
       text-align: center;
@@ -44,8 +54,7 @@
     }
   </style>
 
-  <script>
-  </script>
+<script src="cssVariables.js"></script>
 
 </body>
 </html>
