@@ -14,8 +14,8 @@ function myownmap(arr, fn) {
     });
     return newArray;
 }
-console.log(arr2);
-console.log(arr3);
+//console.log(arr2);
+//console.log(arr3);
 
 /*Our own version of array filter*/
 const arr4 = [1, 2, 3,4,5,6,7,8];
@@ -29,6 +29,6 @@ function myownfilter(arr, fn) {
     });
     return newArray;
 }
-console.log(arr5);
-console.log('custom');
-console.log(arr6);
+//console.log(arr5);
+//console.log('custom');
+//console.log(arr6);

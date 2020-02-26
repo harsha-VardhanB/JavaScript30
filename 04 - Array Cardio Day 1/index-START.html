@@ -35,25 +35,30 @@
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
     const inventornames = inventors.map(element => `${element.first} ${element.last}`);
-    console.log(inventornames);
+    const tryMaps = inventors.map(function(element,index,array){
+      console.log(element);
+      console.log(index);
+      console.log(array);     
+    })
+   // console.log(inventornames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
     const inventorAges = inventors.sort((a,b) => (a.year - b.year));
-    console.log('ages');
-    console.log(inventorAges);
+   // console.log('ages');
+   // console.log(inventorAges);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
     const ageCombined_func = (accumulator, currentValue) => accumulator + (currentValue.passed-currentValue.year);
     const ageCombined = inventors.reduce(ageCombined_func,0);
-    console.log('ages combined');
-    console.log(ageCombined);
+    //console.log('ages combined');
+    //console.log(ageCombined);
 
     // 5. Sort the inventors by years lived
     const inventorOld = inventors.sort((a,b) => ((a.year-a.passed) - (b.year-b.passed)));
-    console.log('old');
-    console.log(inventorOld);
+    //console.log('old');
+    //console.log(inventorOld);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -61,7 +66,7 @@
     let allNames =[]; 
     getAllAnchors.forEach((a) => allNames.push((a.title)));
     let allFilteredNames = allNames.filter(element => element.includes('de'));
-    console.log(allFilteredNames);
+    //console.log(allFilteredNames);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
@@ -75,19 +80,19 @@
           // a must be equal to b
           return 0;
         });
-    console.log('names');
-    console.log(peopleName);
+   // console.log('names');
+   // console.log(peopleName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-    // const result = [];
-    // const instance_func = function(accumulator, currentValue){
-    //   if(data.filter((element) => element === currentValue))
-    // };
-    // const ageCombined = inventors.reduce(ageCombined_func,0);
-    // console.log('ages combined');
-    // console.log(ageCombined);
+    const transportation = data.reduce(function(obj, item) {
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
 
   </script>
   <script src="CustomHigherOrder.js"></script>

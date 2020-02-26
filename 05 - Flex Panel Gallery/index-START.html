@@ -26,6 +26,8 @@
     .panels {
       min-height: 100vh;
       overflow: hidden;
+      display: flex;
+      justify-content: space-between;
     }
 
     .panel {
@@ -43,6 +45,10 @@
       font-size: 20px;
       background-size: cover;
       background-position: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .panel1 { background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500); }
@@ -69,8 +75,22 @@
       font-size: 4em;
     }
 
+    .panel p:not(:nth-child(2)) {
+      transform: translateY(-1000%);
+      transition: transform .5s ease-in;
+     }
+
     .panel.open {
       font-size: 40px;
+    }
+
+    .expandPanel{
+      flex-grow: 10;
+    }
+
+    .slideIn{
+      display: block;
+      transform: translateY(100%);
     }
 
   </style>
@@ -105,7 +125,14 @@
   </div>
 
   <script>
+    const getPanel = document.querySelectorAll('.panel');
+    getPanel.forEach(element => element.addEventListener("click",function(e){
+      addExpandClass(this);
+    }))
 
+    const addExpandClass = function (e){
+        e.classList.toggle('expandPanel');
+    }
   </script>
 
 
