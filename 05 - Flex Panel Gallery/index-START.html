@@ -76,8 +76,12 @@
     }
 
     .panel p:not(:nth-child(2)) {
-      transform: translateY(-1000%);
-      transition: transform .5s ease-in;
+      /* transform: translateY(-1000%);
+      transition: transform .5s ease-in; */
+     }
+
+     .selected p:not(:nth-child(2)) {
+      color:red;
      }
 
     .panel.open {
@@ -131,7 +135,10 @@
     }))
 
     const addExpandClass = function (e){
+        // console.log(e.firstChild);
+        // console.log(e.lastChild);
         e.classList.toggle('expandPanel');
+        e.classList.toggle('selected');
     }
   </script>
 
