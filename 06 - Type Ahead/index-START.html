@@ -15,18 +15,50 @@
     </ul>
   </form>
 <script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-var _input = document.querySelector('#searchBox');
-_input.addEventListener('keyup',pressedKey);
-function pressedKey(e)
-{
-  var text = _input.value;
-  console.log(text);
-  if(text)
-  {
-    console.log('ho ho');
+  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  let _input = document.querySelector('#searchBox');
+  _input.addEventListener('keyup', pressedKey);
+  let _inputValue = '';
+  function pressedKey(e) {
+    var text = _input.value;
+    console.log(text);
+    if (text) {
+      _inputValue = text;
+      makeAjaxCall(endpoint,'GET',searchJSON);
+      console.log('ho ho');
+    }
   }
+
+  function makeAjaxCall(url, methodType,callBack){
+   var xhr = new XMLHttpRequest();
+   xhr.open(methodType, url, true);
+   xhr.send();
+   xhr.onreadystatechange = function(){
+     if (xhr.readyState === 4){
+        if (xhr.status === 200){
+           console.log("xhr done successfully");
+           var resp = xhr.responseText;
+           var respJson = JSON.parse(resp);
+           callBack(respJson);
+        } else {
+          console.log("xhr failed");
+        }
+     } else {
+        console.log("xhr processing going on");
+     }
+  }
+  console.log("request sent succesfully");
 }
+
+  function searchJSON(data)
+  {
+    //let cityData = JSON.parse(data);
+    filteredData = data.filter(function(cityData)
+    {
+      return cityData.city.includes(_inputValue);
+    });
+    console.log(filteredData);
+  }
 </script>
 </body>
 </html>
