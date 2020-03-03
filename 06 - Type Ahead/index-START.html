@@ -10,8 +10,8 @@
   <form class="search-form">
     <input id="searchBox" type="text" class="search" placeholder="City or State">
     <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
+      <!-- <li>Filter for a city</li>
+      <li>or a state</li> -->
     </ul>
   </form>
 <script>
@@ -50,15 +50,23 @@
   console.log("request sent succesfully");
 }
 
-  function searchJSON(data)
-  {
-    //let cityData = JSON.parse(data);
-    filteredData = data.filter(function(cityData)
-    {
-      return cityData.city.includes(_inputValue);
-    });
-    console.log(filteredData);
-  }
+  function searchJSON(data) {
+      //let cityData = JSON.parse(data);
+      const addList = document.querySelector('.suggestions');
+      addList.innerHTML = "";
+      filteredData = data.filter(function (cityData) {
+        return (cityData.city.toLowerCase().includes(_inputValue.toLowerCase()) ||
+                cityData.state.toLowerCase().includes(_inputValue.toLowerCase()));
+      }).sort((a,b) => b.population - a.population);
+      if (filteredData.length > 0) {
+        filteredData.forEach(element => {
+          var li = document.createElement("li");
+          li.appendChild(document.createTextNode(`${element.city},${element.state},   ${element.population}`));
+          addList.appendChild(li);
+        });
+      }
+      console.log(filteredData);
+    }
 </script>
 </body>
 </html>
